@@ -17,13 +17,16 @@
     "@trpc/next": "^10.18.0",
     "@trpc/react-query": "^10.18.0",
     "@trpc/server": "^10.18.0",
+    "class-variance-authority": "^0.5.2",
     "clsx": "^1.2.1",
+    "lucide-react": "^0.180.0",
     "next": "^13.2.4",
     "next-auth": "^4.21.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "superjson": "1.12.2",
     "tailwind-merge": "^1.12.0",
+    "tailwindcss-animate": "^1.0.5",
     "zod": "^3.21.4"
   },
   "devDependencies": {
