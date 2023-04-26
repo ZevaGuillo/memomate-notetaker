@@ -1,8 +1,5 @@
 import { type NextPage } from "next";
 import { useSession } from "next-auth/react";
-import Head from "next/head";
-import Content from "~/components/content";
-import { Header } from "~/components/header";
 import { Layout } from "~/components/layouts";
 
 const Home: NextPage = () => {
