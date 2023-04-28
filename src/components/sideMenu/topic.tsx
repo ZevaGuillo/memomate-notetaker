@@ -1,21 +1,37 @@
 import { Topic } from "@prisma/client";
 import { type FC } from "react";
 import { cn } from "~/lib/utils";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "../ui/tooltip";
 
 interface TopicProps {
-  topic: Topic,
+  topic: Topic;
   open: boolean;
 }
 
-const Topic: FC<TopicProps> = ({topic, open }) => {
+const Topic: FC<TopicProps> = ({ topic, open }) => {
   return (
     <div
       className={cn(
-        "flex w-[15rem] items-center gap-4 py-2 pl-[0.4rem] transition-all",
-        { "hover:bg-slate-800": open }
+        "flex w-[15rem] items-center gap-4 py-2 pl-[0.5rem] transition-all",
+        { "w-[15rem] hover:bg-slate-800": open }
       )}
     >
-      <div className="h-11 w-11 rounded-xl bg-purple-800 transition-all delay-75 ease-in hover:bg-slate-700"></div>
+      <TooltipProvider >
+        <Tooltip>
+          <TooltipTrigger>
+            <div className={cn("min-h-[2.75rem] min-w-[2.75rem] rounded-xl bg-purple-800 transition-all delay-75 ease-in",{'hover:bg-slate-700':!open})}></div>
+          </TooltipTrigger>
+          <TooltipContent side="right" className={cn('ml-3',{ hidden: open })}>
+            {topic.title}
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
+
       <p>{topic.title}</p>
     </div>
   );

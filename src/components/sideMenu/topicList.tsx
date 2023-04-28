@@ -22,13 +22,16 @@ const TopicList: FC<TopicListProps> = ({ open }) => {
   );
 
   return (
-    <ScrollArea className={cn("h-[calc(100vh-14.5rem)] w-[4rem] flex flex-col overflow-hidden",{'w-[15rem]':open})}>
-
-      {/* <Topic open={open} /> */}
-      {topics && topics?.map(topic => (
-        <Topic key={topic.id} open={open} topic={topic}/>
-      ))}
-
+    <ScrollArea
+      className={cn(
+        "flex h-[calc(100vh-14.5rem)] w-[4rem] flex-col overflow-hidden",
+        { "w-[15rem]": open }
+      )}
+    >
+      {topics &&
+        topics?.map((topic) => (
+          <Topic key={topic.id} open={open} topic={topic} />
+        ))}
     </ScrollArea>
   );
 };
