@@ -15,7 +15,7 @@ const Topic: FC<TopicProps> = ({topic, open }) => {
         { "hover:bg-slate-800": open }
       )}
     >
-      <div className="h-12 w-12 rounded-xl bg-slate-900 transition-all delay-75 ease-in hover:bg-slate-800"></div>
+      <div className="h-11 w-11 rounded-xl bg-purple-800 transition-all delay-75 ease-in hover:bg-slate-700"></div>
       <p>{topic.title}</p>
     </div>
   );
