@@ -40,12 +40,12 @@ const Menu = () => {
       </div>
       <div
         className={cn(
-          "absolute -right-[2.5rem] mt-[6rem] grid h-20 w-20 place-content-center rounded-3xl  bg-slate-950 transition-all ease-in-out hover:bg-slate-900",
+          "absolute z-10 -right-[2.5rem] mt-[6rem] grid h-20 w-20 place-content-center rounded-3xl  bg-slate-950 transition-all ease-in-out hover:bg-slate-900",
           { "w-[3rem]": open, "rounded-s-none": open }
         )}
         onClick={() => setOpen(true)}
       >
-        <Plus size={40} />
+        <Plus size={40} pointerEvents={'none'}/>
       </div>
       <div className="mt-[6rem]">
         <NewTopic open={open} />
