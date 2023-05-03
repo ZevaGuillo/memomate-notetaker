@@ -1,28 +1,15 @@
 import { type FC } from "react";
-import Topic from "./topic";
-import { api } from "~/utils/api";
-import { useSession } from "next-auth/react";
+import TopicComponent from "./topic";
 import { ScrollArea } from "../ui/scroll-area";
 import { cn } from "~/lib/utils";
-import { useNoteStore } from "~/store/notetackerStore";
+import { Topic } from "@prisma/client";
 
 interface TopicListProps {
   open: boolean;
+  topics: Topic[]
 }
 
-const TopicList: FC<TopicListProps> = ({ open }) => {
-  const { data: sessionData } = useSession();
-  const { addAllTopic } = useNoteStore();
-  const { data: topics, refetch: refetchTopics } = api.topic.getAll.useQuery(
-    undefined,
-    {
-      enabled: sessionData?.user !== undefined,
-      onSuccess: (data) => {
-        addAllTopic(data);
-        // setSelectedTopic(selectedTopic ?? data[0] ?? null);
-      },
-    }
-  );
+const TopicList: FC<TopicListProps> = ({ open, topics }) => {
 
   return (
     <ScrollArea
@@ -33,7 +20,7 @@ const TopicList: FC<TopicListProps> = ({ open }) => {
     >
       {topics &&
         topics?.map((topic) => (
-          <Topic key={topic.id} open={open} topic={topic} />
+          <TopicComponent key={topic.id} open={open} topic={topic} />
         ))}
     </ScrollArea>
   );

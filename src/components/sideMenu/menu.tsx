@@ -1,28 +1,36 @@
 import { Plus } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
 import TopicList from "./topicList";
 import NewTopic from "./newTopic";
 import { cn } from "~/lib/utils";
+import { useClickOutside } from "~/hooks/use-click-outside";
+import { useSession } from "next-auth/react";
+import { api } from "~/utils/api";
+import { useNoteStore } from "~/store/notetackerStore";
 
 const Menu = () => {
-  const [open, setOpen] = useState(false);
+  const { open, setOpen, containerRef } = useClickOutside();
+  const { addAllTopic, setCurrentTopic, currentTopic } = useNoteStore();
 
-  const containerRef = useRef<HTMLDivElement>(null);
-  const handleClickOutside = (event: MouseEvent) => {
-    if (
-      containerRef.current &&
-      !containerRef.current.contains(event.target as Node)
-    ) {
-      setOpen(false);
+  const { data: sessionData } = useSession();
+
+  const { data: topics, refetch: refetchTopics } = api.topic.getAll.useQuery(
+    undefined,
+    {
+      enabled: sessionData?.user !== undefined,
+      onSuccess: (data) => {
+        addAllTopic(data);
+        if (currentTopic && data[0]) {
+          setCurrentTopic(data[0]);
+        }
+      },
     }
-  };
+  );
 
-  useEffect(() => {
-    document.addEventListener("click", handleClickOutside, true);
-    return () => {
-      document.removeEventListener("click", handleClickOutside, true);
-    };
-  }, []);
+  const createTopic = api.topic.create.useMutation({
+    onSuccess: () => {
+      void refetchTopics();
+    },
+  });
 
   return (
     <div
@@ -40,18 +48,18 @@ const Menu = () => {
       </div>
       <div
         className={cn(
-          "absolute z-10 -right-[2.5rem] mt-[6rem] grid h-20 w-20 place-content-center rounded-3xl  bg-slate-950 transition-all ease-in-out hover:bg-slate-900",
+          "absolute -right-[2.5rem] z-10 mt-[6rem] grid h-20 w-20 place-content-center rounded-3xl  bg-slate-950 transition-all ease-in-out hover:bg-slate-900",
           { "w-[3rem]": open, "rounded-s-none": open }
         )}
         onClick={() => setOpen(true)}
       >
-        <Plus size={40} pointerEvents={'none'}/>
+        <Plus size={40} pointerEvents={"none"} />
       </div>
       <div className="mt-[6rem]">
-        <NewTopic open={open} />
+        <NewTopic open={open} createTopic={createTopic}/>
 
         {/* topic list */}
-        <TopicList open={open} />
+        {topics && <TopicList open={open} topics={topics} />}
       </div>
     </div>
   );
