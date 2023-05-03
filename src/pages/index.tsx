@@ -5,13 +5,11 @@ import { useNoteStore } from "~/store/notetackerStore";
 
 const Home: NextPage = () => {
   const { data: sessionData } = useSession();
-  const {topics} = useNoteStore()
+  const {topics, currentTopic} = useNoteStore()
 
   if(!sessionData?.user) {
     return <div className="h-screen w-full grid place-content-center text-8xl font-bold">Coming Soon</div>
   }
-  console.log(topics);
-  
 
   return (
     <Layout>
