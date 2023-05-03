@@ -1,7 +1,6 @@
 import Head from "next/head";
 import type { FC, ReactNode } from "react";
 import { Header } from "../header";
-import Content from "../content";
 import Menu from "../sideMenu/menu";
 
 interface LayoutProps {
@@ -17,9 +16,8 @@ export const Layout: FC<LayoutProps> = ({ children }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Menu />
-      <main className="ml-[4rem] bg-slate-50 h-full rounded-3xl">
+      <main className="ml-[4rem] px-3 bg-slate-50 h-full rounded-3xl">
         <Header />
-        <Content />
         {/* <h1>hola mundo</h1> */}
         {children}
       </main>

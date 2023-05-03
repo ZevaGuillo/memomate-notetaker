@@ -7,6 +7,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "../ui/tooltip";
+import { useNoteStore } from "~/store/notetackerStore";
 
 interface TopicProps {
   topic: Topic;
@@ -14,12 +15,21 @@ interface TopicProps {
 }
 
 const Topic: FC<TopicProps> = ({ topic, open }) => {
+
+  
+  const { setCurrentTopic} = useNoteStore();
+
+  const onClick =()=>{
+    setCurrentTopic(topic);
+  }
+
   return (
     <div
       className={cn(
         "flex w-[15rem] items-center gap-4 py-2 pl-[0.5rem] transition-all",
         { "w-[15rem] hover:bg-slate-800": open }
       )}
+      onClick={onClick}
     >
       <TooltipProvider >
         <Tooltip>

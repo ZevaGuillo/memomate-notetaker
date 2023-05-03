@@ -6,6 +6,7 @@ import { useClickOutside } from "~/hooks/use-click-outside";
 import { useSession } from "next-auth/react";
 import { api } from "~/utils/api";
 import { useNoteStore } from "~/store/notetackerStore";
+import { useEffect } from "react";
 
 const Menu = () => {
   const { open, setOpen, containerRef } = useClickOutside();
@@ -23,6 +24,9 @@ const Menu = () => {
           setCurrentTopic(data[0]);
         }
       },
+      refetchOnWindowFocus: false,
+      refetchInterval: false,
+      refetchIntervalInBackground: false,
     }
   );
 
@@ -31,6 +35,10 @@ const Menu = () => {
       void refetchTopics();
     },
   });
+
+  useEffect(()=>{
+    setOpen(false);
+  }, [currentTopic])
 
   return (
     <div
