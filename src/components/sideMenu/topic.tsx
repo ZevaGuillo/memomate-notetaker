@@ -39,7 +39,7 @@ const Topic: FC<TopicProps> = ({ topic, open }) => {
           <TooltipTrigger>
             <div className={cn("min-h-[2.75rem] min-w-[2.75rem] rounded-xl bg-purple-800 transition-all delay-75 ease-in",{'hover:bg-slate-700':!open})}></div>
           </TooltipTrigger>
-          <TooltipContent side="right" className={cn('ml-3',{ hidden: open })}>
+          <TooltipContent side="right" className={cn('ml-3 bg-slate-50 border-none',{ hidden: open })}>
             {topic.title}
           </TooltipContent>
         </Tooltip>
