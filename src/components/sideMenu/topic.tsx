@@ -1,4 +1,3 @@
-import { Topic } from "@prisma/client";
 import { type FC } from "react";
 import { cn } from "~/lib/utils";
 import {
@@ -8,6 +7,10 @@ import {
   TooltipTrigger,
 } from "../ui/tooltip";
 import { useNoteStore } from "~/store/notetackerStore";
+import { type RouterOutputs } from "~/utils/api";
+
+type Topic = RouterOutputs['topic']['getAll'][0]
+
 
 interface TopicProps {
   topic: Topic;

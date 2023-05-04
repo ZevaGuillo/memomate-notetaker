@@ -2,7 +2,10 @@ import { type FC } from "react";
 import TopicComponent from "./topic";
 import { ScrollArea } from "../ui/scroll-area";
 import { cn } from "~/lib/utils";
-import { Topic } from "@prisma/client";
+import { type RouterOutputs } from "~/utils/api";
+
+type Topic = RouterOutputs['topic']['getAll'][0]
+
 
 interface TopicListProps {
   open: boolean;

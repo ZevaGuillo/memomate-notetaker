@@ -1,4 +1,4 @@
-import { KeyboardEvent, type FC } from "react";
+import { type KeyboardEvent, type FC } from "react";
 import { Input } from "../ui/input";
 import type { api } from "~/utils/api";
 import { cn } from "~/lib/utils";
