@@ -1,24 +1,35 @@
+import { useEffect, useState } from "react";
 import {
   Sheet,
   SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
   SheetTrigger,
 } from "../ui/sheet";
+import NoteEditor from "./NoteEditor";
+
+type SheetPositions = "right" | "top" | "bottom" | "left" | null | undefined 
 
 const NewNote = () => {
+  const [position, setPosition] = useState<SheetPositions>('bottom');
+  
+  useEffect(() => {
+    function handleResize() {
+      setPosition(window.innerWidth <= 768 ? 'bottom': 'right');
+    }
+
+    window.addEventListener('resize', handleResize);
+    handleResize();
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+
   return (
     <Sheet>
       <SheetTrigger>Open</SheetTrigger>
-      <SheetContent size={"lg"} className="rounded-s-3xl">
-        <SheetHeader>
-          <SheetTitle>Are you sure absolutely sure?</SheetTitle>
-          <SheetDescription>
-            This action cannot be undone. This will permanently delete your
-            account and remove your data from our servers.
-          </SheetDescription>
-        </SheetHeader>
+      <SheetContent size={"lg"} position={position} className="rounded-s-3xl">
+        <NoteEditor/>
       </SheetContent>
     </Sheet>
   );
