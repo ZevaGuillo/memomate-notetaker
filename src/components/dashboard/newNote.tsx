@@ -1,15 +1,25 @@
-import { useEffect, useState } from "react";
+import { type FC, useEffect, useState } from "react";
 import {
   Sheet,
   SheetContent,
   SheetTrigger,
 } from "../ui/sheet";
 import NoteEditor from "./NoteEditor";
+import {type api } from "~/utils/api";
+import { useNoteStore } from "~/store/notetackerStore";
 
 type SheetPositions = "right" | "top" | "bottom" | "left" | null | undefined 
 
-const NewNote = () => {
+interface NewNoteProps{
+  onSave: ReturnType<typeof  api.note.create.useMutation>
+}
+
+const NewNote: FC<NewNoteProps> = ({onSave}) => {
   const [position, setPosition] = useState<SheetPositions>('bottom');
+  
+  const {
+    currentTopic: { id },
+  } = useNoteStore();
   
   useEffect(() => {
     function handleResize() {
@@ -24,12 +34,19 @@ const NewNote = () => {
     };
   }, []);
 
+  const createdNote = (title: string, content: string) =>{
+    onSave.mutate({
+      title,
+      content,
+      topicId: id ?? '',
+    });
+  }
 
   return (
-    <Sheet>
+    <Sheet >
       <SheetTrigger>Open</SheetTrigger>
-      <SheetContent size={"lg"} position={position} className="rounded-s-3xl">
-        <NoteEditor/>
+      <SheetContent  size={position === 'bottom' ? "content": 'lg'} position={position} className="rounded-s-3xl">
+        <NoteEditor onSave={createdNote}/>
       </SheetContent>
     </Sheet>
   );

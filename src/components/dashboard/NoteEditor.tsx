@@ -3,11 +3,12 @@ import { markdown, markdownLanguage } from "@codemirror/lang-markdown";
 import { languages } from "@codemirror/language-data";
 import { aura } from "@uiw/codemirror-theme-aura";
 import { useState, type FC } from "react";
-import { SheetDescription, SheetHeader, SheetTitle } from "../ui/sheet";
+import { SheetHeader, SheetTitle } from "../ui/sheet";
 import { Input } from "../ui/input";
+import * as SheetPrimitive from "@radix-ui/react-dialog";
 
 interface NoteEditorProps {
-  onSave?: (note: { title: string; content: string }) => void;
+  onSave: (title: string, content: string) => void;
 }
 
 const NoteEditor: FC<NoteEditorProps> = ({ onSave }) => {
@@ -18,33 +19,39 @@ const NoteEditor: FC<NoteEditorProps> = ({ onSave }) => {
     <>
       <SheetHeader>
         <SheetTitle>
-            <h2 className="text-slate-50">Title</h2>
-          <Input
-            type="text"
-            placeholder="Note Title"
-            className="bg-slate-800 text-slate-50"
-            value={title}
-            onChange={(e) => setTitle(e.currentTarget.value)}
-          />
+          <h2 className="mb-4 text-3xl text-slate-50">New Note</h2>
         </SheetTitle>
-        <SheetDescription>
-          <div className="overflow-hidden rounded-lg">
-            <CodeMirror
-              value={code}
-              height="50vh"
-              width="500px"
-              minWidth="100%"
-              minHeight="30vh"
-              theme={aura}
-              extensions={[
-                markdown({ base: markdownLanguage, codeLanguages: languages }),
-              ]}
-              onChange={(value) => setCode(value)}
-              className=""
-            />
-          </div>
-        </SheetDescription>
+        <h3 className="text-slate-50">Title</h3>
+        <Input
+          type="text"
+          placeholder="Note Title"
+          className="bg-slate-800 text-slate-50"
+          value={title}
+          onChange={(e) => setTitle(e.currentTarget.value)}
+        />
       </SheetHeader>
+      <div className="mt-2 h-[calc(80vh-16rem)] overflow-auto rounded-lg  md:h-[calc(100vh-16rem)]">
+        <CodeMirror
+          value={code}
+          minHeight="100%"
+          minWidth="100%"
+          theme={aura}
+          extensions={[
+            markdown({ base: markdownLanguage, codeLanguages: languages }),
+          ]}
+          onChange={(value) => setCode(value)}
+          className="h-full"
+        />
+      </div>
+      <SheetPrimitive.Close>
+        <button className="text-white" onClick={() => {
+          if(title.length > 0 && code.length > 0){
+            onSave(title, code)
+          }
+        }}>
+          Save
+        </button>
+      </SheetPrimitive.Close>
     </>
   );
 };
