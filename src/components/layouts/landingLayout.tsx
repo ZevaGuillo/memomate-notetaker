@@ -20,21 +20,20 @@ export const LandingLayout: FC<LayoutProps> = ({ children }) => {
           <h1 className="text-3xl font-bold">MemoMate</h1>
         </div>
         <div className="text-xl font-bold">GitHub</div>
-
         <div
           className={cn(
-            "group absolute left-1/2 top-full z-10 h-20 -translate-x-1/2 transform rounded-b-3xl bg-slate-950 px-6 pt-6 transition-all ease-in-out hover:bg-slate-800"
-            //   { "w-[3rem]": open, "rounded-s-none": open }
+            "group absolute left-1/2 top-full z-10 flex h-14 -translate-x-1/2 transform items-center rounded-b-3xl bg-slate-950 px-6 transition-all ease-in-out hover:bg-slate-800 md:h-20"
           )}
         >
-          <div className="pointer-events-none absolute -left-7 top-0 z-20 h-7 w-7 bg-slate-950 transition-all ease-in-out group-hover:bg-slate-800">
-            <div className="absolute right-[.03rem] h-full w-8 rounded-se-3xl bg-slate-50"></div>
+          <div className="pointer-events-none absolute -left-[1.7rem] top-0 z-20 h-7 w-7 bg-slate-950 transition-all ease-in-out group-hover:bg-slate-800">
+            <div className="absolute right-[.06rem] h-full w-8 rounded-se-3xl bg-slate-50"></div>
           </div>
-          <div className="pointer-events-none absolute -right-7 top-0 z-20 h-7 w-7 bg-slate-950 transition-all ease-in-out group-hover:bg-slate-800">
+          <div className="pointer-events-none absolute -right-[1.7rem] top-0 z-20 h-7 w-7 bg-slate-950 pl-[.05rem] transition-all ease-in-out group-hover:bg-slate-800">
             <div className="absolute h-full w-8 rounded-ss-3xl bg-slate-50"></div>
           </div>
-          <p className="text-sm md:text-base flex gap-2">
-            <Github/> Sign up <span className="hidden font-semibold md:inline">with GitHub</span>
+          <p className="flex gap-2 text-sm md:text-base">
+            <Github /> Sign up{" "}
+            <span className="hidden font-semibold md:inline">with GitHub</span>
           </p>
         </div>
       </header>
