@@ -1,7 +1,8 @@
 import { type NextPage } from "next";
 import { useSession } from "next-auth/react";
 import { Dashboard } from "~/components/dashboard";
-import { Layout } from "~/components/layouts";
+import Landing from "~/components/landing";
+import { LandingLayout, Layout } from "~/components/layouts";
 import { useNoteStore } from "~/store/notetackerStore";
 
 const Home: NextPage = () => {
@@ -10,9 +11,9 @@ const Home: NextPage = () => {
 
   if (!sessionData?.user) {
     return (
-      <div className="grid h-screen w-full place-content-center text-8xl font-bold">
-        Coming Soon
-      </div>
+      <LandingLayout>
+        <Landing/>
+      </LandingLayout>
     );
   }
 
