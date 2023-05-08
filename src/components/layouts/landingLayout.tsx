@@ -1,4 +1,4 @@
-import { Github, Plus } from "lucide-react";
+import { Github } from "lucide-react";
 import Head from "next/head";
 import type { FC, ReactNode } from "react";
 import { cn } from "~/lib/utils";
