@@ -4,6 +4,7 @@ import { useNoteStore } from "~/store/notetackerStore";
 import { api, type RouterOutputs } from "~/utils/api";
 import { useSession } from "next-auth/react";
 import NoteList from "./noteList";
+import { ScrollArea } from "../ui/scroll-area";
 
 type Topic = RouterOutputs["topic"]["getAll"][0];
 
@@ -29,16 +30,15 @@ export const Dashboard = () => {
 
   return (
     <div className="h-full">
-      <div className="flex items-center gap-3">
+      <div className="flex justify-between md:pr-8 gap-3">
         <h1 className="text-2xl font-bold capitalize text-slate-700">
           {currentTopic.title}
         </h1>
         <NewNote onSave={createNote} />
       </div>
-      <div className="h-full bg-slate-400 pb-2 pt-8">
-        
+      <ScrollArea className="h-full pt-12">
         {notes && <NoteList notes={notes} />}
-      </div>
+      </ScrollArea>
     </div>
   );
 };

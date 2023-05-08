@@ -20,7 +20,7 @@ const Home: NextPage = () => {
   return (
     <Layout>
       {currentTopic && (
-        <main className="p-11  h-[calc(100%-5rem)]">
+        <main className="pl-11 py-11  h-[calc(100%-3.5rem)]">
           <Dashboard/>
         </main>
       )}

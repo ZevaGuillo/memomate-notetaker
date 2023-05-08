@@ -44,14 +44,14 @@ const Menu = () => {
     <div
       ref={containerRef}
       className={cn(
-        "fixed top-0 flex h-screen w-[4rem] flex-col bg-slate-950 text-white transition-all ease-in-out",
+        "z-50 fixed top-0 flex h-screen w-[4rem] flex-col bg-slate-950 text-white transition-all ease-in-out",
         { "w-[15rem]": open }
       )}
     >
-      <div className="pointer-events-none absolute -right-5 top-[4.75rem] h-5 w-5 bg-slate-950">
+      <div className="-z-10 pointer-events-none absolute -right-5 top-[4.75rem] h-5 w-5 bg-slate-950">
         <div className="h-5 w-5 rounded-es-full bg-slate-50"></div>
       </div>
-      <div className="pointer-events-none absolute -right-5 top-[11rem] z-20 h-5 w-5 bg-slate-950">
+      <div className="-z-20 pointer-events-none absolute -right-5 top-[11rem] h-5 w-5 bg-slate-950">
         <div className="h-5 w-5 rounded-ss-full bg-slate-50"></div>
       </div>
       <div

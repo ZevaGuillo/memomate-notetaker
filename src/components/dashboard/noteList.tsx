@@ -10,7 +10,7 @@ interface NoteListProps {
 
 const NoteList: FC<NoteListProps> = ({ notes }) => {
   return (
-    <ul>
+    <ul className="flex flex-wrap gap-4">
       {notes &&
         notes.map((note) => (
           <Note key={note.id} note={note}/>
