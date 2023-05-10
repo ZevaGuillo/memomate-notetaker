@@ -1,12 +1,9 @@
 import { type FC } from "react";
 import { type RouterOutputs } from "~/utils/api";
-import {
-  Card,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "../ui/card";
+import { Card, CardFooter, CardHeader, CardTitle } from "../ui/card";
 import { Edit3 } from "lucide-react";
+import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
+import NoteEditor from "./NoteEditor";
 
 type NoteType = RouterOutputs["note"]["getAll"][0];
 
@@ -16,15 +13,14 @@ interface NoteProps {
 
 const Note: FC<NoteProps> = ({ note }) => {
   return (
-    <Card className="bg-gradient-to-r from-orange-300 to-rose-300 border-none shadow-lg shadow-rose-200 flex flex-col justify-between text-slate-950 rounded-2xl h-56 w-56">
-      <CardHeader>
-        <CardTitle className="text-2xl mb-2 flex-1">{note.title}</CardTitle>
-      </CardHeader>
-      <CardFooter className="flex justify-between">
-        <p className="opacity-50 text-sm">{note.updatedAt.toDateString()}</p>
-        <div className="p-2 grid place-content-center rounded-full bg-slate-800 transition-colors hover:bg-slate-700 cursor-pointer"><Edit3 color="#f2f2f2" size={20}/></div>
-      </CardFooter>
-    </Card>
+      <Card className=" flex h-56 w-56 flex-col justify-between rounded-2xl border-none bg-gradient-to-r from-orange-300 to-rose-300 text-slate-950 shadow-lg shadow-rose-200">
+        <CardHeader>
+          <CardTitle className="mb-2 flex-1 text-2xl">{note.title}</CardTitle>
+        </CardHeader>
+        <CardFooter className="flex justify-between ">
+          <p className="text-sm opacity-50">{note.updatedAt.toDateString()}</p>
+        </CardFooter>
+      </Card>
   );
 };
 

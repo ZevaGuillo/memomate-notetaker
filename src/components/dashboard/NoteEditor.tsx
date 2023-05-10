@@ -6,20 +6,29 @@ import { useState, type FC } from "react";
 import { SheetHeader, SheetTitle } from "../ui/sheet";
 import { Input } from "../ui/input";
 import * as SheetPrimitive from "@radix-ui/react-dialog";
+import { type RouterOutputs } from "~/utils/api";
+
+type NoteType = RouterOutputs["note"]["getAll"][0];
 
 interface NoteEditorProps {
   onSave: (title: string, content: string) => void;
+  defaultTitle?: string;
+  defaultNote?: NoteType;
 }
 
-const NoteEditor: FC<NoteEditorProps> = ({ onSave }) => {
-  const [code, setCode] = useState<string>("");
-  const [title, setTitle] = useState<string>("");
+const NoteEditor: FC<NoteEditorProps> = ({
+  onSave,
+  defaultTitle,
+  defaultNote,
+}) => {
+  const [code, setCode] = useState<string>(defaultNote?.content || '');
+  const [title, setTitle] = useState<string>(defaultNote?.title || '');
 
   return (
     <>
       <SheetHeader>
         <SheetTitle>
-          <h2 className="mb-4 text-3xl text-slate-50">New Note</h2>
+          <h2 className="mb-4 text-3xl text-slate-50">{defaultTitle || 'New Note'}</h2>
         </SheetTitle>
         <h3 className="text-slate-50">Title</h3>
         <Input
@@ -44,11 +53,14 @@ const NoteEditor: FC<NoteEditorProps> = ({ onSave }) => {
         />
       </div>
       <SheetPrimitive.Close>
-        <button className="text-white" onClick={() => {
-          if(title.length > 0 && code.length > 0){
-            onSave(title, code)
-          }
-        }}>
+        <button
+          className="text-white"
+          onClick={() => {
+            if (title.length > 0 && code.length > 0) {
+              onSave(title, code);
+            }
+          }}
+        >
           Save
         </button>
       </SheetPrimitive.Close>
