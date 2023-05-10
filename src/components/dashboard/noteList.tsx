@@ -3,6 +3,7 @@ import { type RouterOutputs } from "~/utils/api";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 import Note from "./note";
 import { usePositionSheet } from "~/hooks/use-position-sheet";
+import NoteView from "./noteView";
 
 type NoteType = RouterOutputs["note"]["getAll"][0];
 
@@ -25,6 +26,7 @@ const NoteList: FC<NoteListProps> = ({ notes }) => {
             position={position}
             className="rounded-s-3xl"
             >
+              <NoteView note={note}/>
             </SheetContent>
           </Sheet>
         ))}
