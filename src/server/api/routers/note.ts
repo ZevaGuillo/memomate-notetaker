@@ -22,6 +22,19 @@ export const noteRouter = createTRPCRouter({
                 }
             })
         }),
+    update: protectedProcedure
+        .input(z.object({ title: z.string(), content: z.string(), noteId: z.string() }))
+        .mutation(async ({ ctx, input }) => {
+            return ctx.prisma.note.update({
+                where:{
+                    id: input.noteId
+                },
+                data: {
+                    title: input.title,
+                    content: input.content
+                }
+            })
+        }),
     getAll: protectedProcedure
         .input(z.object({ topicId: z.string() }))
         .query(({ ctx, input }) => {

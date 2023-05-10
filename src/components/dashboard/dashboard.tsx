@@ -27,6 +27,12 @@ export const Dashboard = () => {
     },
   });
 
+  const updateNote = api.note.update.useMutation({
+    onSuccess: () => {
+      void refetchNotes();
+    },
+  });
+
   return (
     <div className="h-full">
       <div className="flex justify-between md:pr-8 gap-3">
@@ -36,7 +42,7 @@ export const Dashboard = () => {
         <NewNote onSave={createNote} />
       </div>
       <div className="h-full pt-12">
-        {notes && <NoteList notes={notes} />}
+        {notes && <NoteList notes={notes} onUpdate={updateNote}/>}
       </div>
     </div>
   );
