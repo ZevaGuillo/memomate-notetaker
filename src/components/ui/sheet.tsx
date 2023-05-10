@@ -6,6 +6,7 @@ import { VariantProps, cva } from "class-variance-authority"
 import { X } from "lucide-react"
 
 import { cn } from "~/lib/utils"
+import { usePositionSheet } from "~/hooks/use-position-sheet"
 
 const Sheet = SheetPrimitive.Root
 
@@ -219,6 +220,23 @@ const SheetDescription = React.forwardRef<
 ))
 SheetDescription.displayName = SheetPrimitive.Description.displayName
 
+const SheetComponent = ({trigger, content}:{trigger: React.ReactNode, content:  React.ReactNode})=>{
+  const {position} = usePositionSheet()
+  return (
+  <Sheet>
+    <SheetTrigger className="group">
+      {trigger}
+    </SheetTrigger>
+    <SheetContent
+      size={position === "bottom" ? "content" : "lg"}
+      position={position}
+      className="rounded-s-3xl"
+    >
+      {content}
+    </SheetContent>
+  </Sheet>)
+}
+
 export {
   Sheet,
   SheetTrigger,
@@ -227,4 +245,5 @@ export {
   SheetFooter,
   SheetTitle,
   SheetDescription,
+  SheetComponent
 }

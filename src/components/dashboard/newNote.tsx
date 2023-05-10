@@ -1,17 +1,15 @@
 import { type FC } from "react";
-import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
+import { SheetComponent } from "../ui/sheet";
 import NoteEditor from "./NoteEditor";
 import { type api } from "~/utils/api";
 import { useNoteStore } from "~/store/notetackerStore";
 import { Plus } from "lucide-react";
-import { usePositionSheet } from "~/hooks/use-position-sheet";
 
 interface NewNoteProps {
   onSave: ReturnType<typeof api.note.create.useMutation>;
 }
 
 const NewNote: FC<NewNoteProps> = ({ onSave }) => {
-  const {position} = usePositionSheet()
 
   const {
     currentTopic: { id },
@@ -26,23 +24,18 @@ const NewNote: FC<NewNoteProps> = ({ onSave }) => {
   };
 
   return (
-    <Sheet>
-      <SheetTrigger className="group">
-        <div className="bg-purple-300 px-4 rounded-full group-hover:bg-purple-200 h-full flex gap-2 justify-between items-center transition-all ease-in-out">
-        <Plus size={25} className="group-hover:scale-105 transition-all ease-linear"/>
-        <p className="text-sm font-semibold">
-          New note
-          </p>
+    <SheetComponent
+      trigger={
+        <div className="flex h-full items-center justify-between gap-2 rounded-full bg-purple-300 px-4 transition-all ease-in-out group-hover:bg-purple-200">
+          <Plus
+            size={25}
+            className="transition-all ease-linear group-hover:scale-105"
+          />
+          <p className="text-sm font-semibold">New note</p>
         </div>
-      </SheetTrigger>
-      <SheetContent
-        size={position === "bottom" ? "content" : "lg"}
-        position={position}
-        className="rounded-s-3xl"
-      >
-        <NoteEditor onSave={createdNote} />
-      </SheetContent>
-    </Sheet>
+      }
+      content={<NoteEditor onSave={createdNote} />}
+    />
   );
 };
 

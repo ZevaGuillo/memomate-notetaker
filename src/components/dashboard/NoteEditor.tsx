@@ -39,17 +39,17 @@ const NoteEditor: FC<NoteEditorProps> = ({
           onChange={(e) => setTitle(e.currentTarget.value)}
         />
       </SheetHeader>
-      <div className="mt-2 h-[calc(80vh-16rem)] overflow-auto rounded-lg  md:h-[calc(100vh-16rem)]">
+      <div className="mt-2 h-[calc(80vh-16rem)] overflow rounded-lg  md:h-[calc(100vh-16rem)]">
         <CodeMirror
           value={code}
-          minHeight="100%"
-          minWidth="100%"
+          height="100%"
+          width="100%"
           theme={aura}
           extensions={[
             markdown({ base: markdownLanguage, codeLanguages: languages }),
           ]}
           onChange={(value) => setCode(value)}
-          className="h-full"
+          className="h-full w-full"
         />
       </div>
       <SheetPrimitive.Close>
