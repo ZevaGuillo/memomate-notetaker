@@ -1,36 +1,21 @@
-import { type FC, useEffect, useState } from "react";
+import { type FC } from "react";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 import NoteEditor from "./NoteEditor";
 import { type api } from "~/utils/api";
 import { useNoteStore } from "~/store/notetackerStore";
-import { PlusCircleIcon, PlusSquare, PlusSquareIcon } from "lucide-react";
 import { Plus } from "lucide-react";
-
-type SheetPositions = "right" | "top" | "bottom" | "left" | null | undefined;
+import { usePositionSheet } from "~/hooks/use-position-sheet";
 
 interface NewNoteProps {
   onSave: ReturnType<typeof api.note.create.useMutation>;
 }
 
 const NewNote: FC<NewNoteProps> = ({ onSave }) => {
-  const [position, setPosition] = useState<SheetPositions>("bottom");
+  const {position} = usePositionSheet()
 
   const {
     currentTopic: { id },
   } = useNoteStore();
-
-  useEffect(() => {
-    function handleResize() {
-      setPosition(window.innerWidth <= 768 ? "bottom" : "right");
-    }
-
-    window.addEventListener("resize", handleResize);
-    handleResize();
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
 
   const createdNote = (title: string, content: string) => {
     onSave.mutate({
