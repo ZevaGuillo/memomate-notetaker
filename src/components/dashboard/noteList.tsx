@@ -11,12 +11,10 @@ type NoteType = RouterOutputs["note"]["getAll"][0];
 interface NoteListProps {
   notes: NoteType[];
   onUpdate: ReturnType<typeof api.note.update.useMutation>;
+  onDelete: ReturnType<typeof api.note.delete.useMutation>;
 }
 
-
-const NoteList: FC<NoteListProps> = ({ notes, onUpdate }) => {
-
-
+const NoteList: FC<NoteListProps> = ({ notes, onUpdate, onDelete }) => {
   return (
     <ul className="flex flex-wrap gap-4">
       {notes &&
@@ -24,7 +22,16 @@ const NoteList: FC<NoteListProps> = ({ notes, onUpdate }) => {
           <div key={note.id} className="relative">
             <SheetComponent
               trigger={<Note note={note} />}
-              content={<NoteView note={note} />}
+              content={
+                <NoteView
+                  note={note}
+                  onDelete={(id: string) => {
+                    onDelete.mutate({
+                      id,
+                    });
+                  }}
+                />
+              }
             />
 
             {/* Editor */}

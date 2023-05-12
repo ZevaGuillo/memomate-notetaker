@@ -1,7 +1,7 @@
 import React, { type FC } from "react";
 import { SheetFooter, SheetHeader, SheetTitle } from "../ui/sheet";
 import ReactMarkdown from "react-markdown";
-import { type RouterOutputs } from "~/utils/api";
+import { api, type RouterOutputs } from "~/utils/api";
 import { ScrollArea } from "../ui/scroll-area";
 import * as SheetPrimitive from "@radix-ui/react-dialog";
 import { Trash2 } from "lucide-react";
@@ -21,9 +21,13 @@ type NoteType = RouterOutputs["note"]["getAll"][0];
 
 interface NoteListProps {
   note: NoteType;
+  
+  onDelete: (id:string) => void;
 }
 
-const NoteView: FC<NoteListProps> = ({ note }) => {
+const NoteView: FC<NoteListProps> = ({ note, onDelete }) => {
+
+
   return (
     <>
       <SheetHeader>
@@ -37,8 +41,6 @@ const NoteView: FC<NoteListProps> = ({ note }) => {
         </article>
       </ScrollArea>
       <SheetFooter>
-        {/* </SheetPrimitive.Close> */}
-
         <AlertDialog>
           <AlertDialogTrigger asChild>
             <div className="absolute bottom-4 right-4 grid cursor-pointer place-content-center rounded-full bg-slate-800 p-2 transition-colors hover:bg-slate-700">
@@ -57,7 +59,13 @@ const NoteView: FC<NoteListProps> = ({ note }) => {
             <AlertDialogFooter>
               <AlertDialogCancel>Cancel</AlertDialogCancel>
               <SheetPrimitive.Close>
-                <AlertDialogAction>Delete</AlertDialogAction>
+                <AlertDialogAction
+                  onClick={() => {
+                    onDelete(note.id)
+                  }}
+                >
+                  Delete
+                </AlertDialogAction>
               </SheetPrimitive.Close>
             </AlertDialogFooter>
           </AlertDialogContent>

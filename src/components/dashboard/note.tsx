@@ -1,9 +1,6 @@
 import { type FC } from "react";
 import { type RouterOutputs } from "~/utils/api";
 import { Card, CardFooter, CardHeader, CardTitle } from "../ui/card";
-import { Edit3 } from "lucide-react";
-import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
-import NoteEditor from "./NoteEditor";
 
 type NoteType = RouterOutputs["note"]["getAll"][0];
 

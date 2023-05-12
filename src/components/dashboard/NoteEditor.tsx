@@ -7,6 +7,7 @@ import { SheetHeader, SheetTitle } from "../ui/sheet";
 import { Input } from "../ui/input";
 import * as SheetPrimitive from "@radix-ui/react-dialog";
 import { type RouterOutputs } from "~/utils/api";
+import { Button } from "../ui/button";
 
 type NoteType = RouterOutputs["note"]["getAll"][0];
 
@@ -52,9 +53,9 @@ const NoteEditor: FC<NoteEditorProps> = ({
           className="h-full w-full"
         />
       </div>
-      <SheetPrimitive.Close>
-        <button
-          className="text-white"
+      <SheetPrimitive.Close className="w-full">
+        <Button
+          className="text-white mt-2 w-full"
           onClick={() => {
             if (title.length > 0 && code.length > 0) {
               onSave(title, code);
@@ -62,7 +63,7 @@ const NoteEditor: FC<NoteEditorProps> = ({
           }}
         >
           Save
-        </button>
+        </Button>
       </SheetPrimitive.Close>
     </>
   );
