@@ -31,6 +31,9 @@ dependencies:
   '@radix-ui/react-scroll-area':
     specifier: ^1.0.3
     version: 1.0.3(react-dom@18.2.0)(react@18.2.0)
+  '@radix-ui/react-slot':
+    specifier: ^1.0.1
+    version: 1.0.1(react@18.2.0)
   '@radix-ui/react-tooltip':
     specifier: ^1.0.5
     version: 1.0.5(@types/react@18.0.28)(react-dom@18.2.0)(react@18.2.0)
