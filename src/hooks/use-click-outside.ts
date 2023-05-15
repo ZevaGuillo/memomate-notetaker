@@ -5,9 +5,10 @@ export const useClickOutside =()=> {
 
     const containerRef = useRef<HTMLDivElement>(null);
     const handleClickOutside = (event: MouseEvent) => {
+      
       if (
         containerRef.current &&
-        !containerRef.current.contains(event.target as Node)
+        containerRef.current.contains(event.target as Node)
       ) {
         setOpen(false);
       }

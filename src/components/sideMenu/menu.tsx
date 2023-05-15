@@ -6,10 +6,14 @@ import { useClickOutside } from "~/hooks/use-click-outside";
 import { useSession } from "next-auth/react";
 import { api } from "~/utils/api";
 import { useNoteStore } from "~/store/notetackerStore";
-import { useEffect } from "react";
+import { Dispatch, FC, SetStateAction, useEffect } from "react";
 
-const Menu = () => {
-  const { open, setOpen, containerRef } = useClickOutside();
+interface MenuProps{
+  setOpen: Dispatch<SetStateAction<boolean>>
+  open: boolean
+}
+
+const Menu: FC<MenuProps> = ({open, setOpen}) => {
   const { addAllTopic, setCurrentTopic, currentTopic } = useNoteStore();
 
   const { data: sessionData } = useSession();
@@ -42,7 +46,6 @@ const Menu = () => {
 
   return (
     <div
-      ref={containerRef}
       className={cn(
         "z-50 fixed top-0 flex h-screen w-[4rem] flex-col bg-slate-950 text-white transition-all ease-in-out",
         { "w-[15rem]": open }
