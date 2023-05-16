@@ -26,7 +26,7 @@ export const noteRouter = createTRPCRouter({
         .input(z.object({ title: z.string(), content: z.string(), noteId: z.string() }))
         .mutation(async ({ ctx, input }) => {
             return ctx.prisma.note.update({
-                where:{
+                where: {
                     id: input.noteId
                 },
                 data: {
@@ -40,6 +40,9 @@ export const noteRouter = createTRPCRouter({
         .query(({ ctx, input }) => {
 
             return ctx.prisma.note.findMany({
+                orderBy: {
+                    updatedAt: 'desc',
+                },
                 where: {
                     topicId: input.topicId
                 }

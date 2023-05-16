@@ -17,15 +17,32 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "../ui/alert-dialog";
+import { type RouterOutputs, api } from "~/utils/api";
+import { type FC } from "react";
+type Topic = RouterOutputs["topic"]["getAll"][0];
 
-const TopicDropdown = () => {
+interface TopicDropdown {
+  topic: Topic 
+}
+
+const TopicDropdown: FC<TopicDropdown> = ({topic}) => {
+
+
+  const updateTopic = api.topic.update.useMutation({
+    onSuccess: (data) => {
+      console.log(data);
+    },
+  });
+
+
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
         <MoreHorizontal />
       </DropdownMenuTrigger>
       <DropdownMenuContent className="bg-slate-900 text-slate-400">
-        <EditTopic />
+        <EditTopic topic={topic} save={updateTopic}/>
         <AlertDialog>
           <AlertDialogTrigger asChild>
             <DropdownMenuItem

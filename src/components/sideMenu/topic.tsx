@@ -9,7 +9,6 @@ import {
 import { useNoteStore } from "~/store/notetackerStore";
 import { type RouterOutputs } from "~/utils/api";
 import TopicDropdown from "./topicDropdown";
-import EditTopic from './editTopic';
 
 type Topic = RouterOutputs["topic"]["getAll"][0];
 
@@ -59,7 +58,7 @@ const Topic: FC<TopicProps> = ({ topic, open }) => {
             e.stopPropagation();
           }}
         >
-          <TopicDropdown />
+          <TopicDropdown topic={topic}/>
         </div>
       </div>
     </div>
