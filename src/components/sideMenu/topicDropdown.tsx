@@ -22,18 +22,21 @@ import { type FC } from "react";
 type Topic = RouterOutputs["topic"]["getAll"][0];
 
 interface TopicDropdown {
-  topic: Topic 
+  topic: Topic;
 }
 
-const TopicDropdown: FC<TopicDropdown> = ({topic}) => {
-
-
+const TopicDropdown: FC<TopicDropdown> = ({ topic }) => {
   const updateTopic = api.topic.update.useMutation({
     onSuccess: (data) => {
       console.log(data);
     },
   });
 
+  const deleteTopic = api.topic.delete.useMutation({
+    onSuccess: (data) => {
+      console.log(data);
+    },
+  });
 
 
   return (
@@ -42,7 +45,7 @@ const TopicDropdown: FC<TopicDropdown> = ({topic}) => {
         <MoreHorizontal />
       </DropdownMenuTrigger>
       <DropdownMenuContent className="bg-slate-900 text-slate-400">
-        <EditTopic topic={topic} save={updateTopic}/>
+        <EditTopic topic={topic} save={updateTopic} />
         <AlertDialog>
           <AlertDialogTrigger asChild>
             <DropdownMenuItem
@@ -55,18 +58,22 @@ const TopicDropdown: FC<TopicDropdown> = ({topic}) => {
           </AlertDialogTrigger>
           <AlertDialogContent className="text-slate-50">
             <AlertDialogHeader>
-              <AlertDialogTitle>Delete Note Confirmation</AlertDialogTitle>
+              <AlertDialogTitle>Delete Topic and Notes</AlertDialogTitle>
               <AlertDialogDescription>
-                Are you sure you want to delete this note? This action cannot be
-                undone. Click {'"'}Delete{'"'} to confirm or {'"'}Cancel
-                {'"'} to go back.
+                Are you sure you want to delete this topic and all its
+                associated notes? This action cannot be undone, and all
+                information will be permanently lost. Please confirm your
+                choice.
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
               <AlertDialogCancel>Cancel</AlertDialogCancel>
               <AlertDialogAction
-              // onClick={() => {
-              // }}
+              onClick={() => {
+                deleteTopic.mutate({
+                  id: topic.id
+                })
+              }}
               >
                 Delete
               </AlertDialogAction>
