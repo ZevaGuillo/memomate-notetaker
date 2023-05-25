@@ -1,22 +1,27 @@
 import { type FC } from "react";
-import { api, type RouterOutputs } from "~/utils/api";
+import type { api, RouterOutputs } from "~/utils/api";
 import { SheetComponent } from "../ui/sheet";
 import Note from "./note";
 import NoteView from "./noteView";
 import { Edit3 } from "lucide-react";
 import NoteEditor from "./NoteEditor";
+import { Skeleton } from "../ui/skeleton";
 
 type NoteType = RouterOutputs["note"]["getAll"][0];
 
 interface NoteListProps {
   notes: NoteType[];
+  isLoading: boolean;
   onUpdate: ReturnType<typeof api.note.update.useMutation>;
   onDelete: ReturnType<typeof api.note.delete.useMutation>;
 }
 
-const NoteList: FC<NoteListProps> = ({ notes, onUpdate, onDelete }) => {
+const NoteList: FC<NoteListProps> = ({ isLoading, notes, onUpdate, onDelete }) => {
   return (
     <ul className="flex flex-wrap gap-4">
+
+      {isLoading && <Skeleton className="h-56 w-56 bg-slate-300 rounded-2xl"/>}
+        
       {notes &&
         notes.map((note) => (
           <div key={note.id} className="relative">
