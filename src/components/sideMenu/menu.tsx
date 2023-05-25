@@ -51,10 +51,10 @@ const Menu: FC<MenuProps> = ({open, setOpen}) => {
         { "w-[15rem]": open }
       )}
     >
-      <div className="-z-10 pointer-events-none absolute -right-5 top-[4.75rem] h-5 w-5 bg-slate-950">
+      <div className="hidden md:block -z-10 pointer-events-none absolute -right-5 top-[4.75rem] h-5 w-5 bg-slate-950">
         <div className="h-5 w-5 rounded-es-full bg-slate-50"></div>
       </div>
-      <div className="-z-20 pointer-events-none absolute -right-5 top-[11rem] h-5 w-5 bg-slate-950">
+      <div className="hidden md:block -z-20 pointer-events-none absolute -right-5 top-[11rem] h-5 w-5 bg-slate-950">
         <div className="h-5 w-5 rounded-ss-full bg-slate-50"></div>
       </div>
       <div
