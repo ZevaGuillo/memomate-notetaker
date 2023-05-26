@@ -51,9 +51,10 @@ const Topic: FC<TopicProps> = ({ topic, open }) => {
         </Tooltip>
       </TooltipProvider>
 
-      <div className={cn("hidden pl-1 w-full items-center opacity-0 justify-between transition-all ease-in-out pointer-events-auto", {"flex opacity-1": open})}>
-        <p>{topic.title}</p>
+      <div className={cn("hidden pl-1 w-full items-center opacity-0 justify-between transition-all ease-in-out pointer-events-auto", {"flex gap-2 opacity-1": open})}>
+        <p className="overflow-hidden w-32 whitespace-nowrap text-ellipsis ">{topic.title}</p>
         <div
+          className="grid place-content-center"
           onClick={(e) => {
             e.stopPropagation();
           }}

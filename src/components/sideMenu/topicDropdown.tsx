@@ -19,6 +19,8 @@ import {
 } from "../ui/alert-dialog";
 import { type RouterOutputs, api } from "~/utils/api";
 import { type FC } from "react";
+import { useNoteStore } from "~/store/notetackerStore";
+import { useToast } from "../ui/use-toast";
 type Topic = RouterOutputs["topic"]["getAll"][0];
 
 interface TopicDropdown {
@@ -26,15 +28,25 @@ interface TopicDropdown {
 }
 
 const TopicDropdown: FC<TopicDropdown> = ({ topic }) => {
+
+  const { toast } = useToast();
+  const { topicLoading, setTopicLoading } = useNoteStore();
+
   const updateTopic = api.topic.update.useMutation({
-    onSuccess: (data) => {
-      console.log(data);
+    onSuccess: () => {
+      setTopicLoading(!topicLoading);
+      toast({
+        description:"Topic successfully updated!",
+      });
     },
   });
 
   const deleteTopic = api.topic.delete.useMutation({
-    onSuccess: (data) => {
-      console.log(data);
+    onSuccess: () => {
+      setTopicLoading(!topicLoading);
+      toast({
+        description:"Topic successfully deleted!",
+      });
     },
   });
 

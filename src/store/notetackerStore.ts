@@ -5,11 +5,8 @@ import { type RouterOutputs } from '../utils/api';
 type Topic = RouterOutputs['topic']['getAll'][0]
 
 export const useNoteStore = create<NoteState>((set) => ({
-    topics: [],
+    topicLoading: false,
     currentTopic: {} as Topic,
-    addAllTopic: (addtopics) =>
-        set({
-            topics: [...addtopics],
-        }),
-    setCurrentTopic: (topic) => set({currentTopic: topic})
+    setTopicLoading: (value) => set({ topicLoading: value }),
+    setCurrentTopic: (topic: Topic) => set({ currentTopic: topic })
 }))
