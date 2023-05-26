@@ -1,8 +1,8 @@
 import {
   type KeyboardEvent,
   type FC,
-  SetStateAction,
-  Dispatch,
+  type SetStateAction,
+  type   Dispatch,
   useState,
 } from "react";
 import { Input } from "../ui/input";

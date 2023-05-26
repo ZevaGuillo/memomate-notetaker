@@ -1,12 +1,8 @@
-import { Plus } from "lucide-react";
 import TopicList from "./topicList";
 import NewTopic from "./newTopic";
 import { cn } from "~/lib/utils";
-import { useClickOutside } from "~/hooks/use-click-outside";
-import { useSession } from "next-auth/react";
-import { api } from "~/utils/api";
 import { useNoteStore } from "~/store/notetackerStore";
-import { Dispatch, FC, SetStateAction, useEffect } from "react";
+import { type Dispatch, type FC, type SetStateAction, useEffect } from "react";
 import { useApiTopic } from "~/hooks/use-api-topic";
 
 interface MenuProps {
