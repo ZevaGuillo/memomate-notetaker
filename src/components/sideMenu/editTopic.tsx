@@ -55,9 +55,9 @@ const EditTopic: FC<EditTopicProps> = ({ topic, save }) => {
               onChange={(e) => setTopicValue(e.target.value)}
             />
             <div className="flex space-x-4">
-              <Button onClick={onSave}>
-                <DialogPrimitive.Close>Save</DialogPrimitive.Close>
-              </Button>
+              <DialogPrimitive.Close>
+                <Button onClick={onSave}>Save</Button>
+              </DialogPrimitive.Close>
               <DialogPrimitive.Close className="rounded-md border p-2 hover:border-slate-400 ">
                 Cancel
               </DialogPrimitive.Close>
