@@ -134,7 +134,7 @@ function dispatch(action: Action) {
     listener(memoryState)
   })
 }
-
+/* eslint-disable @typescript-eslint/no-empty-interface */
 interface Toast extends Omit<ToasterToast, "id"> {}
 
 function toast({ ...props }: Toast) {
