@@ -21,6 +21,7 @@ import { type RouterOutputs, api } from "~/utils/api";
 import { type FC } from "react";
 import { useNoteStore } from "~/store/notetackerStore";
 import { useToast } from "../ui/use-toast";
+import { useSession } from "next-auth/react";
 type Topic = RouterOutputs["topic"]["getAll"][0];
 
 interface TopicDropdown {
@@ -30,7 +31,25 @@ interface TopicDropdown {
 const TopicDropdown: FC<TopicDropdown> = ({ topic }) => {
 
   const { toast } = useToast();
-  const { topicLoading, setTopicLoading } = useNoteStore();
+  const { topicLoading, setTopicLoading, setCurrentTopic } = useNoteStore();
+  const { data: sessionData } = useSession();
+
+  const { refetch } = api.topic.getAll.useQuery(
+    undefined,
+    {
+        enabled: sessionData?.user !== undefined,
+        onSuccess:(data) => {
+          if(data[0]){
+            setCurrentTopic(data[0])
+          }else{
+            setCurrentTopic({} as Topic)
+          }
+        },
+        refetchOnWindowFocus: false,
+        refetchInterval: false,
+        refetchIntervalInBackground: false,
+    }
+);
 
   const updateTopic = api.topic.update.useMutation({
     onSuccess: () => {
@@ -85,6 +104,7 @@ const TopicDropdown: FC<TopicDropdown> = ({ topic }) => {
                 deleteTopic.mutate({
                   id: topic.id
                 })
+                void refetch();
               }}
               >
                 Delete

@@ -8,7 +8,7 @@ import { api } from "~/utils/api";
 export const useApiTopic = () => {
     const { toast } = useToast()
 
-    const { topicLoading, setTopicLoading } = useNoteStore();
+    const { topicLoading, setTopicLoading, setCurrentTopic } = useNoteStore();
 
     const { data: sessionData } = useSession();
 
@@ -23,8 +23,9 @@ export const useApiTopic = () => {
     );
 
     const createTopic = api.topic.create.useMutation({
-        onSuccess: () => {
+        onSuccess: (data) => {
             setTopicLoading(!topicLoading);
+            setCurrentTopic(data)
             toast({
                 description: "Topic successfully created!",
             })
