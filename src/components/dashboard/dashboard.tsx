@@ -13,6 +13,7 @@ export const Dashboard = () => {
     <div className="h-full relative">
       <div className="flex justify-between md:pr-8 gap-3">
         <h1 className="text-2xl font-bold capitalize text-slate-700">
+          <span>{currentTopic.icon}</span>
           {currentTopic.title}
         </h1>
         <NewNote onSave={createNote} />

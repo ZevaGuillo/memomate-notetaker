@@ -38,8 +38,10 @@ const NewTopic: FC<NewTopicProps> = ({ open, setOpen, createTopic }) => {
     } else {
       createTopic.mutate({
         title: value,
+        icon: picker
       });
       setInput("");
+      setPicker('📚')
     }
   };
 

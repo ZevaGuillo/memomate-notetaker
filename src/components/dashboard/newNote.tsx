@@ -26,7 +26,7 @@ const NewNote: FC<NewNoteProps> = ({ onSave }) => {
   return (
     <SheetComponent
       trigger={
-        <div className="absolute top-0 right-0 h-14 w-14 md:h-10 md:w-auto flex items-center justify-between gap-2 rounded-full bg-purple-300 px-4 transition-all ease-in-out group-hover:bg-purple-200">
+        <div className="absolute top-0 right-0 h-14 w-14 md:h-10 md:w-auto flex items-center justify-between gap-2 rounded-full bg-purple-400 px-4 transition-all ease-in-out group-hover:bg-purple-300">
           <Plus
             size={25}
             className="transition-all ease-linear group-hover:scale-105"
