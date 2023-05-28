@@ -3,9 +3,10 @@ import NewNote from "./newNote";
 import { useNoteStore } from "~/store/notetackerStore";
 import NoteList from "./noteList";
 import { useApiNote } from "~/hooks/use-api-note";
+import { Skeleton } from "../ui/skeleton";
 
 export const Dashboard = () => {
-  const { currentTopic } = useNoteStore();
+  const { currentTopic, topicLoading } = useNoteStore();
   const { notes, createNote, deleteNote, updateNote, isLoading } = useApiNote();
 
   return (
@@ -23,16 +24,25 @@ export const Dashboard = () => {
       </div>
       <div className="h-full pt-12">
         {!currentTopic.icon ? (
-          <div className="pt-20">
-            <h2 className="text-3xl text-slate-500">
-              You don{"'"}t have any notes to display at the moment.
-            </h2>
-            <p className="text-2xl text-slate-400">
-              Before adding notes, you need to create a topic. A topic is a
-              <br />
-              category or context in which you can organize your notes
-            </p>
-          </div>
+          <>
+            {topicLoading ? (
+              <Skeleton className="h-32 w-20 bg-red-500" />
+            ) : (
+              <>
+                <div className="pt-20">
+                  <h2 className="text-3xl text-slate-500">
+                    You don{"'"}t have any notes to display at the moment.
+                  </h2>
+                  <p className="text-2xl text-slate-400">
+                    Before adding notes, you need to create a topic. A topic is
+                    a
+                    <br />
+                    category or context in which you can organize your notes
+                  </p>
+                </div>
+              </>
+            )}
+          </>
         ) : (
           <>
             {notes && (

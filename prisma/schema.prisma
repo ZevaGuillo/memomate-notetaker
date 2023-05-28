@@ -48,6 +48,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   topics        Topic[]
+  firstSignIn   Boolean   @default(true) 
 }
 
 model VerificationToken {
@@ -66,7 +67,7 @@ model Topic {
   icon      String
   userId    String
   notes     Note[]
-  user      User     @relation(fields: [userId], references: [id])
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Note {

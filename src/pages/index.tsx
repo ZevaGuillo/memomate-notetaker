@@ -9,19 +9,15 @@ const Home: NextPage = () => {
   const { data: sessionData } = useSession();
   const { currentTopic } = useNoteStore();
 
-  if (!sessionData?.user) {
-    return (
-      <LandingLayout>
-        <Landing/>
-      </LandingLayout>
-    );
-  }
-
-  return (
+  return !sessionData?.user ? (
+    <LandingLayout>
+      <Landing />
+    </LandingLayout>
+  ) : (
     <Layout>
       {currentTopic && (
-        <main className="pl-11 py-11  h-[calc(100%-3.5rem)]">
-          <Dashboard/>
+        <main className="h-[calc(100%-3.5rem)] py-11  pl-11">
+          <Dashboard />
         </main>
       )}
     </Layout>

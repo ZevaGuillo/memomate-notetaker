@@ -1,8 +1,14 @@
 import { z } from 'zod'
 
 import { createTRPCRouter, protectedProcedure } from '../trpc'
+import { initialValue } from '~/lib/initial'
 
 export const topicRouter = createTRPCRouter({
+    init: protectedProcedure
+        .query(async({ ctx }) => {
+            const topic = await initialValue(ctx.session.user.id);
+            return {topic}
+        }),
     getAll: protectedProcedure
         .query(({ ctx }) => {
             return ctx.prisma.topic.findMany({

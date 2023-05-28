@@ -44,6 +44,7 @@ const TopicDropdown: FC<TopicDropdown> = ({ topic }) => {
           }else{
             setCurrentTopic({} as Topic)
           }
+          setTopicLoading(false);
         },
         refetchOnWindowFocus: false,
         refetchInterval: false,
