@@ -15,27 +15,27 @@ export const Header = () => {
       <div className="h-full flex-none gap-1 py-4">
         {/* <img className='h-full rounded-full' src={sessionData?.user?.image || ''} alt={sessionData?.user?.name || ''}/> */}
 
-        <Popover>
-          <PopoverTrigger asChild>
-            <Avatar>
-              <AvatarImage
-                src={sessionData?.user.image}
-                alt={sessionData?.user.name}
-              />
-              <AvatarFallback>
-                {getInitials(sessionData?.user.name as string)}
-              </AvatarFallback>
-            </Avatar>
-          </PopoverTrigger>
-          <PopoverContent className="w-auto max-w-[320px] space-y-2 bg-slate-50">
-            <div className="text-lg">
-              {sessionData?.user.name
-                ? `${sessionData.user.name}`
-                : ""}
-            </div>
-            <Button className="w-full" onClick={() => void signOut()}>Log out</Button>
-          </PopoverContent>
-        </Popover>
+        {sessionData?.user && (
+          <Popover>
+            <PopoverTrigger asChild>
+              <Avatar>
+                <AvatarImage
+                  src={sessionData.user.image || ''}
+                  alt={sessionData.user.name || ''}
+                />
+                <AvatarFallback>
+                  {getInitials(sessionData.user.name as string)}
+                </AvatarFallback>
+              </Avatar>
+            </PopoverTrigger>
+            <PopoverContent className="w-auto max-w-[320px] space-y-2 bg-slate-50">
+              <div className="text-lg">{sessionData.user.name}</div>
+              <Button className="w-full" onClick={() => void signOut()}>
+                Log out
+              </Button>
+            </PopoverContent>
+          </Popover>
+        )}
       </div>
     </div>
   );
