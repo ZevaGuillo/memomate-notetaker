@@ -1,4 +1,5 @@
 import { Github } from "lucide-react";
+import { signIn, useSession } from "next-auth/react";
 import Head from "next/head";
 import type { FC, ReactNode } from "react";
 import { cn } from "~/lib/utils";
@@ -8,6 +9,10 @@ interface LayoutProps {
 }
 
 export const LandingLayout: FC<LayoutProps> = ({ children }) => {
+
+
+  const { data: sessionData } = useSession();
+
   return (
     <div className="relative h-screen w-screen overflow-x-hidden bg-slate-950 p-3 py-3 pr-3 pt-16">
       <Head>
@@ -24,6 +29,7 @@ export const LandingLayout: FC<LayoutProps> = ({ children }) => {
           className={cn(
             "group absolute left-1/2 top-full z-10 flex h-14 -translate-x-1/2 transform items-center rounded-b-3xl bg-slate-950 px-6 transition-all ease-in-out hover:bg-slate-800 md:h-20"
           )}
+          onClick={()=>void signIn()}
         >
           <div className="pointer-events-none absolute -left-[1.7rem] top-0 z-20 h-7 w-7 bg-slate-950 transition-all ease-in-out group-hover:bg-slate-800">
             <div className="absolute right-[.06rem] h-full w-8 rounded-se-3xl bg-slate-50"></div>
