@@ -24,11 +24,13 @@ const Menu: FC<MenuProps> = ({ open, setOpen }) => {
         "fixed top-0 z-50 flex h-screen w-[4rem] flex-col bg-slate-950 text-white transition-all ease-in-out",
         { "w-[15rem]": open }
       )}
-    >
+    > 
+      <p className={cn("absolute text-3xl font-bold py-6 px-4 opacity-0 transition-opacity delay-0 duration-300 ease-in-out ", {'opacity-100 delay-150': open})}>MemoMate</p>
       <NewTopic open={open} setOpen={setOpen} createTopic={createTopic} />
 
       {/* topic list */}
       {topics && <TopicList open={open} topics={topics} />}
+      <p className={cn("text-sm text-slate-400 whitespace-nowrap font-bold py-6 px-4 opacity-0 transition-opacity delay-0 duration-300 ease-in-out ", {'opacity-100 delay-150': open})}>by ❤ ZevaGuillo</p>
     </div>
   );
 };

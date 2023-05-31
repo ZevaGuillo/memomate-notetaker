@@ -30,7 +30,7 @@ export const Header = () => {
             </PopoverTrigger>
             <PopoverContent className="w-auto max-w-[320px] space-y-2 bg-slate-50">
               <div className="text-lg">{sessionData.user.name}</div>
-              <Button className="w-full" onClick={() => void signOut()}>
+              <Button className="w-full bg-slate-950 hover:bg-slate-700" onClick={() => void signOut()}>
                 Log out
               </Button>
             </PopoverContent>
