@@ -4,6 +4,7 @@ import Head from "next/head";
 import type { FC, ReactNode } from "react";
 import { cn } from "~/lib/utils";
 import { ScrollArea } from "../ui/scroll-area";
+import Link from "next/link";
 
 interface LayoutProps {
   children: ReactNode;
@@ -22,10 +23,11 @@ export const LandingLayout: FC<LayoutProps> = ({ children }) => {
           <div className="">
             <h1 className="text-2xl md:text-3xl font-bold">MemoMate</h1>
           </div>
-          <div className="flex cursor-pointer gap-2 text-lg md:text-xl font-semibold hover:text-slate-400">
+          <Link href={'https://github.com/ZevaGuillo/memomate-notetaker'} target="_blank" rel="noreferrer"
+ className="flex cursor-pointer gap-2 text-lg md:text-xl font-semibold hover:text-slate-400">
             <Github />
             <span className="hidden md:inline">Star on </span>GitHub
-          </div>
+          </Link>
           <div
             className={cn(
               "group absolute left-1/2 top-full z-10 flex h-16 -translate-x-1/2 transform items-center rounded-b-3xl bg-slate-950 px-6 transition-all ease-in-out hover:bg-slate-800"
