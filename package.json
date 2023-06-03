@@ -33,6 +33,7 @@
     "@trpc/server": "^10.18.0",
     "@uiw/codemirror-theme-aura": "^4.19.16",
     "@uiw/react-codemirror": "^4.19.16",
+    "@vercel/analytics": "^1.0.1",
     "class-variance-authority": "^0.5.2",
     "clsx": "^1.2.1",
     "codemirror": "^6.0.1",

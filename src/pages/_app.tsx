@@ -7,6 +7,7 @@ import { api } from "~/utils/api";
 import "~/styles/globals.css";
 import { Layout } from "~/components/layouts";
 import { Toaster } from "~/components/ui/toaster";
+import { Analytics } from "~/components/analytics";
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
@@ -17,6 +18,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
       
         <Component {...pageProps} />
         <Toaster/>
+        <Analytics/>
     </SessionProvider>
   );
 };
