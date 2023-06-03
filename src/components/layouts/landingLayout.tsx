@@ -20,9 +20,9 @@ export const LandingLayout: FC<LayoutProps> = ({ children }) => {
       <div className="relative">
         <header className="absolute shadow-md z-50 left-0 top-0 flex h-16 w-full items-center justify-between bg-slate-950 px-6 text-white">
           <div className="">
-            <h1 className="text-3xl font-bold">MemoMate</h1>
+            <h1 className="text-2xl md:text-3xl font-bold">MemoMate</h1>
           </div>
-          <div className="flex cursor-pointer gap-2 text-xl font-semibold hover:text-slate-400">
+          <div className="flex cursor-pointer gap-2 text-lg md:text-xl font-semibold hover:text-slate-400">
             <Github />
             <span className="hidden md:inline">Star on </span>GitHub
           </div>
