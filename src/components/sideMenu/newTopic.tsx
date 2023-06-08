@@ -18,6 +18,7 @@ import {
   DropdownMenuTrigger,
 } from "@radix-ui/react-dropdown-menu";
 import { Corner } from "../corner";
+import { EmojiPicker } from "../emojiPicker";
 
 interface NewTopicProps {
   open: boolean;
@@ -96,22 +97,7 @@ const NewTopic: FC<NewTopicProps> = ({ open, setOpen, createTopic }) => {
             onKeyDown={onInput}
           />
 
-          <DropdownMenu>
-            <DropdownMenuTrigger>
-              <div className="grid h-10 w-10 place-content-center rounded-e-md bg-slate-800 text-xl hover:bg-slate-700">
-                {picker}
-              </div>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent
-              side="bottom"
-              className="absolute right-0 z-50 w-48"
-            >
-              <Picker
-                data={data}
-                onEmojiSelect={(e: { native: string }) => setPicker(e.native)}
-              />
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <EmojiPicker pickerState={picker} setPicker={setPicker}/>
         </div>
       </div>
     </>

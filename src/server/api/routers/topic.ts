@@ -32,7 +32,7 @@ export const topicRouter = createTRPCRouter({
             })
         }),
     update: protectedProcedure
-        .input(z.object({ id: z.string(), title: z.string() }))
+        .input(z.object({ id: z.string(), title: z.string(), icon: z.string() }))
         .mutation(({ ctx, input }) => {
             return ctx.prisma.topic.update({
                 where: {
@@ -40,6 +40,7 @@ export const topicRouter = createTRPCRouter({
                 },
                 data: {
                     title: input.title,
+                    icon: input.icon,
                     userId: ctx.session.user.id
                 }
             })

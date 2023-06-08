@@ -12,6 +12,7 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import type { api, RouterOutputs } from "~/utils/api";
+import { EmojiPicker } from "../emojiPicker";
 
 type Topic = RouterOutputs["topic"]["getAll"][0];
 
@@ -21,6 +22,7 @@ interface EditTopicProps {
 }
 
 const EditTopic: FC<EditTopicProps> = ({ topic, save }) => {
+  const [picker, setPicker] = useState(topic.icon);
   const [topicValue, setTopicValue] = useState(topic?.title || "");
 
   const onSave = () => {
@@ -28,6 +30,7 @@ const EditTopic: FC<EditTopicProps> = ({ topic, save }) => {
       save.mutate({
         id: topic.id,
         title: topicValue,
+        icon: picker,
       });
     } else {
       // TODO: Alert
@@ -50,10 +53,13 @@ const EditTopic: FC<EditTopicProps> = ({ topic, save }) => {
         <DialogHeader>
           <DialogTitle>Edit Topic</DialogTitle>
           <div className="space-y-4 pt-4">
-            <Input
-              value={topicValue}
-              onChange={(e) => setTopicValue(e.target.value)}
-            />
+            <div className="flex">
+              <Input
+                value={topicValue}
+                onChange={(e) => setTopicValue(e.target.value)}
+              />
+              <EmojiPicker pickerState={picker} setPicker={setPicker} />
+            </div>
             <div className="flex space-x-4">
               <DialogPrimitive.Close>
                 <Button onClick={onSave}>Save</Button>
