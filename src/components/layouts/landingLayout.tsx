@@ -1,10 +1,11 @@
 import { Github, LogIn } from "lucide-react";
-import { signIn, useSession } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import Head from "next/head";
 import type { FC, ReactNode } from "react";
 import { cn } from "~/lib/utils";
-import { ScrollArea } from "../ui/scroll-area";
 import Link from "next/link";
+import Image from "next/image";
+import { Corner} from "../corner";
 
 interface LayoutProps {
   children: ReactNode;
@@ -19,12 +20,16 @@ export const LandingLayout: FC<LayoutProps> = ({ children }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="relative">
-        <header className="absolute shadow-md z-50 left-0 top-0 flex h-16 w-full items-center justify-between bg-slate-950 px-6 text-white">
+        <header className="absolute left-0 top-0 z-50 flex h-16 w-full items-center justify-between bg-slate-950 px-6 text-white shadow-md">
           <div className="">
-            <h1 className="text-2xl md:text-3xl font-bold">MemoMate</h1>
+            <h1 className="text-2xl font-bold md:text-3xl">MemoMate</h1>
           </div>
-          <Link href={'https://github.com/ZevaGuillo/memomate-notetaker'} target="_blank" rel="noreferrer"
- className="flex cursor-pointer gap-2 text-lg md:text-xl font-semibold hover:text-slate-400">
+          <Link
+            href={"https://github.com/ZevaGuillo/memomate-notetaker"}
+            target="_blank"
+            rel="noreferrer"
+            className="flex cursor-pointer gap-2 text-lg font-semibold hover:text-slate-400 md:text-xl"
+          >
             <Github />
             <span className="hidden md:inline">Star on </span>GitHub
           </Link>
@@ -34,14 +39,14 @@ export const LandingLayout: FC<LayoutProps> = ({ children }) => {
             )}
             onClick={() => void signIn()}
           >
-            <div className="pointer-events-none absolute -left-[1.15rem] top-0 z-20 h-5 w-5 bg-slate-950 transition-all ease-in-out group-hover:bg-slate-800">
-              <div className="absolute right-[.1rem] h-full w-8 rounded-se-3xl bg-slate-50"></div>
-            </div>
-            <div className="pointer-events-none absolute -right-[1.15rem] top-0 z-20 h-5 w-5 bg-slate-950 pl-[.12rem] transition-all ease-in-out group-hover:bg-slate-800">
-              <div className="absolute h-full w-8 rounded-ss-3xl bg-slate-50"></div>
-            </div>
+
+            <Corner className="pointer-events-none absolute -left-[19.7px] top-0 z-20 fill-slate-950 transition-all ease-in-out rotate-90 group-hover:fill-slate-800" />
+
+
+            <Corner className="pointer-events-none absolute -right-[19.7px] top-0 z-20 fill-slate-950 transition-all ease-in-out group-hover:fill-slate-800" />
+
             <p className="flex gap-2 text-sm md:text-base">
-              <LogIn className="md:hidden"/>
+              <LogIn className="md:hidden" />
               <span className="hidden font-semibold md:inline">
                 Start For Free
               </span>
