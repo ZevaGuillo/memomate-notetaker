@@ -8,7 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "./ui/card";
-import { Code, ListTree, Star } from "lucide-react";
+import { Code, HeartIcon, ListTree, Star } from "lucide-react";
 import { Corner } from "./corner";
 
 type feature = {
@@ -57,12 +57,12 @@ const Landing = () => {
               stay on top of your tasks with our intuitive note-taking app.
             </p>
           </section>
-          <div className="relative h-[50vh] w-full flex justify-center">
-                <div className="hidden lg:block relative w-10/12 h-full rounded-3xl">
-                  <Corner className="pointer-events-none absolute -left-[20px] bottom-0 z-20 hidden rotate-180 fill-slate-950 transition-all ease-in-out group-hover:fill-slate-800 lg:block" />
-                  <Corner className="pointer-events-none absolute -right-[19.7px] bottom-0 z-20 hidden rotate-[270deg] fill-slate-950 transition-all ease-in-out group-hover:fill-slate-800 lg:block" />
-                </div>
-            <div className="sticky h-fit top-0 z-50 w-full transform rounded-3xl bg-slate-950 md:absolute md:left-1/2 md:w-11/12 md:-translate-x-1/2 lg:w-10/12">
+          <div className="relative flex h-[50vh] w-full justify-center">
+            <div className="relative hidden h-full w-10/12 rounded-3xl lg:block">
+              <Corner className="pointer-events-none absolute -left-[20px] bottom-0 z-20 hidden rotate-180 fill-slate-950 transition-all ease-in-out group-hover:fill-slate-800 lg:block" />
+              <Corner className="pointer-events-none absolute -right-[19.7px] bottom-0 z-20 hidden rotate-[270deg] fill-slate-950 transition-all ease-in-out group-hover:fill-slate-800 lg:block" />
+            </div>
+            <div className="sticky top-0 z-50 h-fit w-full transform rounded-3xl bg-slate-950 md:absolute md:left-1/2 md:w-11/12 md:-translate-x-1/2 lg:w-10/12">
               <div className="rounded-3xl border-8 border-slate-950">
                 <Image
                   src={"/landing.png"}
@@ -76,27 +76,55 @@ const Landing = () => {
           </div>
         </div>
       </section>
-      <section className="mt-4 flex flex-col items-center justify-center text-slate-400 md:mt-[15vh] lg:mt-[45vh]">
+      <section className="my-4 mb-16 flex flex-col items-center justify-center text-slate-400 md:mt-[15vh] lg:mt-[45vh]">
         <h2 className="py-6 text-3xl font-bold text-slate-400">Features</h2>
         <div className="flex flex-col gap-6 md:grid md:grid-cols-3 lg:w-10/12 lg:px-8">
           {features.map((feature, inx) => (
-            <>
-              <Card
-                key={`${feature.title}-${inx}`}
-                className="border-slate-800 text-slate-400"
-              >
-                <CardHeader className="pb-2">
-                  <div className="pb-4">{feature.icon}</div>
-                  <CardTitle className="text-lg font-bold">
-                    {feature.title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>{feature.description}</CardContent>
-              </Card>
-            </>
+            <Card
+              key={`${feature.title}-${inx}`}
+              className="border-slate-800 text-slate-400"
+            >
+              <CardHeader className="pb-2">
+                <div className="pb-4">{feature.icon}</div>
+                <CardTitle className="text-lg font-bold">
+                  {feature.title}
+                </CardTitle>
+              </CardHeader>
+              <CardContent>{feature.description}</CardContent>
+            </Card>
           ))}
         </div>
       </section>
+      <footer className="p-6 pb-6 pt-12 text-slate-500">
+        Created by <HeartIcon className="inline" size={20} />{" "}
+        <a
+          href="https://github.com/ZevaGuillo"
+          className="text-slate-400"
+          target="_blank"
+          rel="noreferrer"
+        >
+          @zevaguillo
+        </a>{" "}
+        using UI components from{" "}
+        <a
+          href="https://ui.shadcn.com"
+          className="text-slate-400"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Shadcn UI
+        </a>{" "}
+        and deployed on{" "}
+        <a
+          href="https://vercel.com"
+          className="text-slate-400"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Vercel
+        </a>
+        .
+      </footer>
     </>
   );
 };

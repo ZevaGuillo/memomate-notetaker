@@ -5,6 +5,7 @@ import { useNoteStore } from "~/store/notetackerStore";
 import { type Dispatch, type FC, type SetStateAction, useEffect } from "react";
 import { useApiTopic } from "~/hooks/use-api-topic";
 import Link from "next/link";
+import { HeartIcon } from "lucide-react";
 
 interface MenuProps {
   setOpen: Dispatch<SetStateAction<boolean>>;
@@ -44,7 +45,7 @@ const Menu: FC<MenuProps> = ({ open, setOpen }) => {
           { "opacity-100 delay-150": open }
         )}
       >
-        by ❤{" "}
+        by <HeartIcon className="inline" size={20}/>{" "}
         <Link
           href={"https://github.com/ZevaGuillo"}
           target="_blank"
