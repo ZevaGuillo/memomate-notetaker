@@ -18,13 +18,13 @@ interface NoteListProps {
 
 const NoteList: FC<NoteListProps> = ({ isLoading, notes, onUpdate, onDelete }) => {
   return (
-    <ul className="flex flex-wrap gap-4">
+    <ul className="grid gap-4 grid-cols-fluid">
 
-      {isLoading && <Skeleton className="h-56 w-56 bg-slate-300 rounded-2xl"/>}
+      {isLoading && <Skeleton className="h-full w-full bg-slate-300 rounded-2xl"/>}
         
       {notes &&
         notes.map((note) => (
-          <div key={note.id} className="relative">
+          <div key={note.id} className="relative w-full h-56">
             <SheetComponent
               trigger={<Note note={note} />}
               content={

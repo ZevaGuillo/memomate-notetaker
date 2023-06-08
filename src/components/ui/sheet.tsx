@@ -224,7 +224,7 @@ const SheetComponent = ({trigger, content}:{trigger: React.ReactNode, content:  
   const {position} = usePositionSheet()
   return (
   <Sheet>
-    <SheetTrigger className="group">
+    <SheetTrigger className="group w-full h-full">
       {trigger}
     </SheetTrigger>
     <SheetContent

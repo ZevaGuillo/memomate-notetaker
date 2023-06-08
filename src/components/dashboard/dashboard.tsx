@@ -39,7 +39,7 @@ export const Dashboard = () => {
           <div className="flex justify-between gap-3 md:pr-8">
             {!!currentTopic.icon && (
               <>
-                <h1 className="text-2xl font-bold capitalize text-slate-700">
+                <h1 className="text-2xl font-bold flex gap-1 capitalize text-slate-700">
                   <span>{currentTopic.icon}</span>
                   {currentTopic.title}
                 </h1>

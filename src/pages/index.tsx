@@ -16,7 +16,7 @@ const Home: NextPage = () => {
   ) : (
     <Layout>
       {currentTopic && (
-        <main className="h-[calc(100%-3.5rem)] py-11  pl-11">
+        <main className="h-[calc(100%-3.5rem)] py-11 pl-11 overflow-hidden">
           <Dashboard />
         </main>
       )}

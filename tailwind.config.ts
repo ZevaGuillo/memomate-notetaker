@@ -46,6 +46,7 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -66,6 +67,9 @@ export default {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      gridTemplateColumns: {
+        'fluid': 'repeat(auto-fill, minmax(14rem, 1fr))',
+      }
     },
   },
   plugins: [require("tailwindcss-animate"), require('@tailwindcss/typography'),],
