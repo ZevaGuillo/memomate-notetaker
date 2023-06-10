@@ -4,7 +4,6 @@ import Head from "next/head";
 import type { FC, ReactNode } from "react";
 import { cn } from "~/lib/utils";
 import Link from "next/link";
-import Image from "next/image";
 import { Corner} from "../corner";
 
 interface LayoutProps {
