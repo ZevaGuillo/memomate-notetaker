@@ -1,28 +1,82 @@
-# Create T3 App
+<h1 align="center">
+  MemoMate Notetaker 📚
+</h1>
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
 
-## What's next? How do I make an app with this?
+<div align="center">
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+<a href="https://memomate-note.vercel.app">
+<img src="./public/banner.jpg" />
+</a>
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+<p></p>
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+<span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+<a href="#-getting-started">🤝 Contribute</a>
+<span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+<a href="https://twitter.com/ZevaGuillo">🤘 Twitter</a>
 
-## Learn More
+</div>
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+## Features
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+- Login with Google and GitHub
+- Create, Edit, and Delete Topics
+- Create, Edit, and Delete Notes
+- Markdown Support
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
 
-## How do I deploy this?
+## Local setup
 
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+Clone the repository:
+
+```bash
+git clone git@github.com:YOU_USER/slug.git
+```
+
+Install dependencies:
+
+```bash
+pnpm install
+```
+
+Create Your .env File
+```bash
+DATABASE_URL=
+
+NEXTAUTH_SECRET=""
+NEXTAUTH_URL="http://localhost:3000"
+
+GITHUB_CLIENT_ID=
+GITHUB_CLIENT_SECRET=
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+```
+
+Push your DB to Supabase:
+```bash
+pnpx prisma db push
+```
+
+Run
+```bash
+pnpm run dev
+```
+
+## Tech Stack
+This project is built with [create-t3-app](https://github.com/t3-oss/create-t3-app)
+- [Next.js](https://nextjs.org/)
+- [React](https://reactjs.org/)
+- [tRPC](https://trpc.io/)
+- [Prisma](https://www.prisma.io/)
+- [Supabase](https://supabase.com/)
+- [Tailwind](https://tailwindcss.com/)
+
+
+## Authors
+
+- [@ZevaGuillo](https://github.com/ZevaGuillo)
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)

@@ -20,7 +20,6 @@ const Home: NextPage = () => {
 
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const session = await getSession({ req });
-  console.log("serve.", session);
 
   if (!session) {
     return {
