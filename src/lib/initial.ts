@@ -26,7 +26,7 @@ export const initialValue = async (userId: string) => {
         await prisma.note.create({
             data: {
                 title: 'README',
-                content: "# My Awesome App",
+                content: "# Welcome to MemoMate",
                 topicId: topic.id,
             },
         });
